@@ -30,9 +30,11 @@ const Navbar = () => {
           transform: "translate(-50%, -50%)",
         }}
       >
-        <div className="w-2.5 h-2.5 rounded-full bg-[#C4B5FD]" />
+        {/* Dark Purple Cursor Dot */}
+        <div className="w-2.5 h-2.5 rounded-full bg-[#8B5CF6]" />
 
-        <div className="absolute -inset-5 rounded-full bg-[#8B5CF6]/20 blur-xl" />
+        {/* Soft Purple Glow */}
+        <div className="absolute -inset-5 rounded-full bg-[#8B5CF6]/15 blur-xl" />
       </div>
 
       {/* Navbar */}
@@ -50,7 +52,6 @@ const Navbar = () => {
             shadow-[0_8px_30px_rgba(0,0,0,0.35)]
           "
         >
-
           {/* Logo */}
           <a
             href="#home"
@@ -58,44 +59,40 @@ const Navbar = () => {
           >
             Afifa
             <span className="text-[#8B5CF6] group-hover:text-[#5EEAD4] transition duration-300">
-              .Dev
+              .Grid
             </span>
           </a>
 
-
           {/* Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-
+          <div className="hidden md:flex items-center gap-10 ml-10">
             <a
               href="#about"
-              className="text-sm text-[#A8A1B2] hover:text-[#C4B5FD] transition duration-300"
+              className="text-sm text-white hover:text-[#C4B5FD] transition duration-300"
             >
               About Me
             </a>
 
             <a
               href="#skills"
-              className="text-sm text-[#A8A1B2] hover:text-[#C4B5FD] transition duration-300"
+              className="text-sm text-white hover:text-[#C4B5FD] transition duration-300"
             >
               Skills
             </a>
 
             <a
               href="#experience"
-              className="text-sm text-[#A8A1B2] hover:text-[#C4B5FD] transition duration-300"
+              className="text-sm text-white hover:text-[#C4B5FD] transition duration-300"
             >
               Experience
             </a>
 
             <a
               href="#projects"
-              className="text-sm text-[#A8A1B2] hover:text-[#C4B5FD] transition duration-300"
+              className="text-sm text-white hover:text-[#C4B5FD] transition duration-300"
             >
               Projects
             </a>
-
           </div>
-
 
           {/* Buttons */}
           <div className="flex items-center gap-2">
@@ -121,7 +118,6 @@ const Navbar = () => {
               Download CV
             </a>
 
-
             {/* Hire Me */}
             <a
               href="#contact"
@@ -145,7 +141,6 @@ const Navbar = () => {
             </a>
 
           </div>
-
         </div>
       </nav>
     </>

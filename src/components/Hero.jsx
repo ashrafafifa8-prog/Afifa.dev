@@ -1,5 +1,5 @@
 import React from "react";
-import Animations from "../components/Animations";
+
 import {
   FiArrowUpRight,
   FiGithub,
@@ -71,7 +71,6 @@ const Hero = () => {
             <span className="w-12 h-px bg-[#8B5CF6]" />
           </div>
 
-
           {/* Main Name */}
           <h1
             className="
@@ -92,7 +91,6 @@ const Hero = () => {
             </span>
           </h1>
 
-
           {/* Role */}
           <h2
             className="
@@ -104,10 +102,9 @@ const Hero = () => {
               text-[#F8F5FF]
             "
           >
-            Frontend Developer
+            Digital Experience Designer
             <span className="text-[#5EEAD4]">.</span>
           </h2>
-
 
           {/* Description */}
           <p
@@ -122,11 +119,9 @@ const Hero = () => {
               text-[#A8A1B2]
             "
           >
-            I create modern, responsive and user-friendly digital
-            experiences with React, JavaScript and Tailwind CSS.
-            I turn ideas into clean and engaging web interfaces.
+            I don't just build websites — I craft digital experiences
+            that make people stop, explore, and remember.
           </p>
-
 
           {/* Buttons */}
           <div
@@ -140,7 +135,6 @@ const Hero = () => {
               mt-9
             "
           >
-
             {/* View Work */}
             <a
               href="#projects"
@@ -176,7 +170,6 @@ const Hero = () => {
               />
             </a>
 
-
             {/* Let's Talk */}
             <a
               href="#contact"
@@ -199,9 +192,7 @@ const Hero = () => {
             >
               Let's Talk
             </a>
-
           </div>
-
 
           {/* Social Icons */}
           <div
@@ -214,7 +205,7 @@ const Hero = () => {
               mt-11
             "
           >
-
+            {/* GitHub */}
             <a
               href="#"
               className="
@@ -238,7 +229,7 @@ const Hero = () => {
               <FiGithub size={19} />
             </a>
 
-
+            {/* LinkedIn */}
             <a
               href="#"
               className="
@@ -262,7 +253,7 @@ const Hero = () => {
               <FiLinkedin size={19} />
             </a>
 
-
+            {/* Email */}
             <a
               href="#"
               className="
@@ -275,9 +266,9 @@ const Hero = () => {
                 items-center
                 justify-center
                 text-[#A8A1B2]
-                hover:text-[#5EEAD4]
-                hover:border-[#5EEAD4]
-                hover:bg-[#10201F]
+                 hover:text-[#C4B5FD]
+                hover:border-[#8B5CF6]
+                hover:bg-[#24143A]
                 hover:-translate-y-1
                 transition-all
                 duration-300
@@ -285,19 +276,15 @@ const Hero = () => {
             >
               <FiMail size={19} />
             </a>
-
           </div>
-
 
           {/* Scroll */}
           <div className="hero-item mt-10 flex flex-col items-center">
-
             <span className="text-[10px] tracking-[0.45em] uppercase text-[#7C708D]">
               Scroll
             </span>
 
             <div className="mt-3 w-px h-9 bg-gradient-to-b from-[#8B5CF6] to-transparent animate-pulse" />
-
           </div>
 
         </div>
