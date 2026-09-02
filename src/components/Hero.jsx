@@ -207,7 +207,8 @@ const Hero = () => {
           >
             {/* GitHub */}
             <a
-              href="#"
+              href="https://github.com/ashrafafifa8-prog"
+                target="_blank"
               className="
                 w-11
                 h-11
@@ -231,7 +232,8 @@ const Hero = () => {
 
             {/* LinkedIn */}
             <a
-              href="#"
+              href="https://www.linkedin.com/in/afifa-ashraf03/"
+                target="_blank"
               className="
                 w-11
                 h-11
@@ -255,7 +257,9 @@ const Hero = () => {
 
             {/* Email */}
             <a
-              href="#"
+              href="mailto:ashrafafifa8gmail.com"
+              target="_blank"
+
               className="
                 w-11
                 h-11

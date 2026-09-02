@@ -99,7 +99,7 @@ const Navbar = () => {
 
             {/* Download CV */}
             <a
-              href="/CV.pdf"
+              href="Afifa Ashraf.pdf"
               download
               className="
                 hidden sm:flex
