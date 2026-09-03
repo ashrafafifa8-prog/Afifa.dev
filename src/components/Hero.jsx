@@ -1,4 +1,6 @@
+
 import React from "react";
+import { motion } from "framer-motion";
 
 import {
   FiArrowUpRight,
@@ -11,15 +13,56 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden bg-[#080610] text-[#F8F5FF]"
+      className="
+        relative
+        min-h-screen
+        overflow-hidden
+        bg-[#080610]
+        text-[#F8F5FF]
+      "
     >
       {/* Background Glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-[500px] h-[500px] rounded-full bg-[#6D28D9]/20 blur-[140px] -top-20 -left-20 animate-pulse" />
+        <div
+          className="
+            absolute
+            w-[500px]
+            h-[500px]
+            rounded-full
+            bg-[#6D28D9]/20
+            blur-[140px]
+            -top-20
+            -left-20
+            animate-pulse
+          "
+        />
 
-        <div className="absolute w-[550px] h-[550px] rounded-full bg-[#8B5CF6]/20 blur-[160px] top-[25%] -right-40 animate-[float_8s_ease-in-out_infinite]" />
+        <div
+          className="
+            absolute
+            w-[550px]
+            h-[550px]
+            rounded-full
+            bg-[#8B5CF6]/20
+            blur-[160px]
+            top-[25%]
+            -right-40
+            animate-[float_8s_ease-in-out_infinite]
+          "
+        />
 
-        <div className="absolute w-[450px] h-[300px] rounded-full bg-[#4C1D95]/25 blur-[130px] bottom-0 left-[20%]" />
+        <div
+          className="
+            absolute
+            w-[450px]
+            h-[300px]
+            rounded-full
+            bg-[#4C1D95]/25
+            blur-[130px]
+            bottom-0
+            left-[20%]
+          "
+        />
       </div>
 
       {/* Subtle Background Name */}
@@ -61,7 +104,16 @@ const Hero = () => {
         <div className="max-w-5xl">
 
           {/* Intro */}
-          <div className="flex items-center justify-center gap-4 mb-7 hero-item">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.1,
+              ease: "easeOut",
+            }}
+            className="flex items-center justify-center gap-4 mb-7"
+          >
             <span className="w-12 h-px bg-[#8B5CF6]" />
 
             <p className="text-sm md:text-base tracking-[0.4em] uppercase text-[#C4B5FD]">
@@ -69,12 +121,22 @@ const Hero = () => {
             </p>
 
             <span className="w-12 h-px bg-[#8B5CF6]" />
-          </div>
+          </motion.div>
 
           {/* Main Name */}
-          <h1
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.12,
+                  delayChildren: 0.3,
+                },
+              },
+            }}
             className="
-              hero-item
               text-[clamp(3rem,8vw,7.5rem)]
               leading-none
               font-black
@@ -82,19 +144,78 @@ const Hero = () => {
               whitespace-nowrap
             "
           >
-            <span className="text-[#F8F5FF]">
+            {/* AFIFA */}
+            <motion.span
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 60,
+                  filter: "blur(12px)",
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                  transition: {
+                    duration: 0.8,
+                    ease: "easeOut",
+                  },
+                },
+              }}
+              className="text-[#F8F5FF]"
+            >
               AFIFA
-            </span>
+            </motion.span>
 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C4B5FD] via-[#8B5CF6] to-[#A78BFA]">
+            {/* ASHRAF */}
+            <motion.span
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 60,
+                  filter: "blur(12px)",
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                  transition: {
+                    duration: 0.8,
+                    ease: "easeOut",
+                  },
+                },
+              }}
+              className="
+                text-transparent
+                bg-clip-text
+                bg-gradient-to-r
+                from-[#C4B5FD]
+                via-[#8B5CF6]
+                to-[#A78BFA]
+              "
+            >
               {" "}ASHRAF
-            </span>
-          </h1>
+            </motion.span>
+          </motion.h1>
 
           {/* Role */}
-          <h2
+          <motion.h2
+            initial={{
+              opacity: 0,
+              y: 30,
+              filter: "blur(8px)",
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 1,
+              ease: "easeOut",
+            }}
             className="
-              hero-item
               mt-7
               text-2xl
               md:text-4xl
@@ -103,13 +224,40 @@ const Hero = () => {
             "
           >
             Digital Experience Designer
-            <span className="text-[#5EEAD4]">.</span>
-          </h2>
+
+            <motion.span
+              animate={{
+                opacity: [0.4, 1, 0.4],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="text-[#5EEAD4]"
+            >
+              .
+            </motion.span>
+          </motion.h2>
 
           {/* Description */}
-          <p
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 30,
+              filter: "blur(8px)",
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 1.3,
+              ease: "easeOut",
+            }}
             className="
-              hero-item
               mt-6
               mx-auto
               max-w-2xl
@@ -121,12 +269,24 @@ const Hero = () => {
           >
             I don't just build websites — I craft digital experiences
             that make people stop, explore, and remember.
-          </p>
+          </motion.p>
 
           {/* Buttons */}
-          <div
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 1.5,
+              ease: "easeOut",
+            }}
             className="
-              hero-item
               flex
               flex-wrap
               justify-center
@@ -192,12 +352,24 @@ const Hero = () => {
             >
               Let's Talk
             </a>
-          </div>
+          </motion.div>
 
           {/* Social Icons */}
-          <div
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 1.7,
+              ease: "easeOut",
+            }}
             className="
-              hero-item
               flex
               justify-center
               items-center
@@ -208,7 +380,8 @@ const Hero = () => {
             {/* GitHub */}
             <a
               href="https://github.com/ashrafafifa8-prog"
-                target="_blank"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 w-11
                 h-11
@@ -233,7 +406,8 @@ const Hero = () => {
             {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/afifa-ashraf03/"
-                target="_blank"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 w-11
                 h-11
@@ -257,9 +431,7 @@ const Hero = () => {
 
             {/* Email */}
             <a
-              href="mailto:ashrafafifa8gmail.com"
-              target="_blank"
-
+              href="mailto:ashrafafifa8@gmail.com"
               className="
                 w-11
                 h-11
@@ -270,7 +442,7 @@ const Hero = () => {
                 items-center
                 justify-center
                 text-[#A8A1B2]
-                 hover:text-[#C4B5FD]
+                hover:text-[#C4B5FD]
                 hover:border-[#8B5CF6]
                 hover:bg-[#24143A]
                 hover:-translate-y-1
@@ -280,16 +452,31 @@ const Hero = () => {
             >
               <FiMail size={19} />
             </a>
-          </div>
+          </motion.div>
 
           {/* Scroll */}
-          <div className="hero-item mt-10 flex flex-col items-center">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 15,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 1.9,
+              ease: "easeOut",
+            }}
+            className="mt-10 flex flex-col items-center"
+          >
             <span className="text-[10px] tracking-[0.45em] uppercase text-[#7C708D]">
               Scroll
             </span>
 
             <div className="mt-3 w-px h-9 bg-gradient-to-b from-[#8B5CF6] to-transparent animate-pulse" />
-          </div>
+          </motion.div>
 
         </div>
       </div>
@@ -298,3 +485,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

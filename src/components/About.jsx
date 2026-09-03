@@ -1,4 +1,6 @@
+
 import React from "react";
+import { motion } from "framer-motion";
 
 import {
   FiArrowUpRight,
@@ -8,6 +10,57 @@ import {
 } from "react-icons/fi";
 
 const About = () => {
+  const skills = [
+    "React",
+    "JavaScript",
+    "HTML",
+    "CSS",
+    "Tailwind CSS",
+    "Framer Motion",
+  ];
+
+  const tools = [
+    "Figma",
+    "Git",
+    "GitHub",
+    "Vercel",
+    "Netlify",
+  ];
+
+  const fadeUp = {
+    hidden: {
+      opacity: 0,
+      y: 35,
+      filter: "blur(8px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const chipAnimation = {
+    hidden: {
+      opacity: 0,
+      y: 15,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section
       id="about"
@@ -16,50 +69,79 @@ const About = () => {
         overflow-hidden
         bg-[#080610]
         text-[#F8F5FF]
-        py-24
+        py-14
       "
     >
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="
-            absolute
-            w-[400px]
-            h-[400px]
-            rounded-full
-            bg-[#6D28D9]/10
-            blur-[130px]
-            -left-40
-            top-20
-          "
-        />
-
-        <div
+        <motion.div
+          animate={{
+            x: [0, 30, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           className="
             absolute
             w-[350px]
             h-[350px]
             rounded-full
+            bg-[#6D28D9]/10
+            blur-[120px]
+            -left-40
+            top-10
+          "
+        />
+
+        <motion.div
+          animate={{
+            x: [0, -25, 0],
+            y: [0, 20, 0],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            w-[300px]
+            h-[300px]
+            rounded-full
             bg-[#8B5CF6]/10
-            blur-[130px]
+            blur-[120px]
             -right-32
-            bottom-10
+            bottom-5
           "
         />
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8">
 
         {/* Section Heading */}
-        <div className="mb-14 text-center">
-
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="w-10 h-px bg-[#8B5CF6]" />
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+          className="mb-9 text-center"
+        >
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-center gap-4 mb-3"
+          >
+            <span className="w-8 h-px bg-[#8B5CF6]" />
 
             <span
               className="
-                text-sm
+                text-xs
                 uppercase
                 tracking-[0.35em]
                 text-[#C4B5FD]
@@ -68,22 +150,22 @@ const About = () => {
               About Me
             </span>
 
-            <span className="w-10 h-px bg-[#8B5CF6]" />
-          </div>
+            <span className="w-8 h-px bg-[#8B5CF6]" />
+          </motion.div>
 
           <h2
             className="
-              text-4xl
-              md:text-5xl
+              text-3xl
+              md:text-4xl
               font-bold
               tracking-tight
             "
           >
-            Turning ideas into
+            Turning ideas into{" "}
 
             <span
               className="
-                ml-3
+                ml-2
                 text-transparent
                 bg-clip-text
                 bg-gradient-to-r
@@ -95,34 +177,73 @@ const About = () => {
               digital experiences.
             </span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Content */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
 
           {/* LEFT SIDE */}
-          <div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+            }}
+          >
 
             {/* Intro */}
-            <p
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
               className="
                 text-white
-                text-base
-                md:text-lg
-                leading-8
+                text-sm
+                md:text-base
+                leading-7
                 max-w-xl
               "
             >
               I’m Afifa Ashraf, and I love turning ideas into beautiful
               digital experiences — combining clean code, modern design,
               and creativity to build websites that feel as good as they look.
-            </p>
+            </motion.p>
 
-            <p
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 25,
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.7,
+                    delay: 0.15,
+                  },
+                },
+              }}
               className="
-                mt-5
+                mt-3
                 text-white
-                leading-7
+                text-sm
+                leading-6
                 max-w-xl
               "
             >
@@ -130,29 +251,56 @@ const About = () => {
               on creating modern interfaces with attention to design,
               usability and performance. I love learning new technologies
               and turning concepts into meaningful digital products.
-            </p>
+            </motion.p>
 
             {/* Education Card */}
-            <div
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 30,
+                scale: 0.96,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.25,
+                ease: "easeOut",
+              }}
+              whileHover={{
+                y: -5,
+                scale: 1.01,
+              }}
               className="
-                mt-8
-                p-5
+                mt-5
+                p-4
                 rounded-2xl
                 border
                 border-[#302340]
                 bg-[#0D0A15]/80
                 backdrop-blur-xl
                 hover:border-[#8B5CF6]/50
-                transition-all
+                transition-colors
                 duration-300
               "
             >
               <div className="flex items-start gap-4">
 
-                <div
+                <motion.div
+                  whileHover={{
+                    rotate: 8,
+                    scale: 1.08,
+                  }}
                   className="
-                    w-11
-                    h-11
+                    w-10
+                    h-10
                     shrink-0
                     rounded-xl
                     bg-[#8B5CF6]/10
@@ -164,13 +312,13 @@ const About = () => {
                     text-[#C4B5FD]
                   "
                 >
-                  <FiCode size={20} />
-                </div>
+                  <FiCode size={18} />
+                </motion.div>
 
                 <div>
                   <p
                     className="
-                      text-xs
+                      text-[11px]
                       uppercase
                       tracking-[0.2em]
                       text-[#7C708D]
@@ -179,31 +327,48 @@ const About = () => {
                     Education
                   </p>
 
-                  <h3 className="mt-1 text-lg font-semibold">
+                  <h3 className="mt-1 text-base font-semibold">
                     BS Software Engineering
                   </h3>
 
-                  <p className="mt-1 text-sm text-[#A8A1B2]">
+                  <p className="mt-1 text-xs text-[#A8A1B2]">
                     5th Semester
                   </p>
                 </div>
 
               </div>
-            </div>
+            </motion.div>
 
             {/* Skills */}
-            <div className="mt-8">
-
-              <div className="flex items-center gap-3 mb-4">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.3,
+              }}
+              className="mt-5"
+            >
+              <div className="flex items-center gap-3 mb-3">
 
                 <FiLayers
                   className="text-[#8B5CF6]"
-                  size={18}
+                  size={17}
                 />
 
                 <h3
                   className="
-                    text-sm
+                    text-xs
                     uppercase
                     tracking-[0.2em]
                     text-[#C4B5FD]
@@ -214,54 +379,82 @@ const About = () => {
 
               </div>
 
-              <div className="flex flex-wrap gap-2.5">
-
-                {[
-                  "React",
-                  "JavaScript",
-                  "HTML",
-                  "CSS",
-                  "Tailwind CSS",
-                  "Framer Motion",
-                ].map((skill) => (
-                  <span
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{
+                  once: true,
+                  amount: 0.3,
+                }}
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.08,
+                    },
+                  },
+                }}
+                className="flex flex-wrap gap-2"
+              >
+                {skills.map((skill) => (
+                  <motion.span
                     key={skill}
+                    variants={chipAnimation}
+                    whileHover={{
+                      y: -4,
+                      scale: 1.05,
+                    }}
                     className="
-                      px-4
-                      py-2
+                      px-3
+                      py-1.5
                       rounded-full
                       border
                       border-[#302340]
                       bg-[#0D0A15]
-                      text-sm
+                      text-xs
                       text-[#BFB5D1]
                       hover:border-[#8B5CF6]
                       hover:text-[#C4B5FD]
-                      transition-all
+                      transition-colors
                       duration-300
                     "
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
-
-              </div>
-
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Tools */}
-            <div className="mt-7">
-
-              <div className="flex items-center gap-3 mb-4">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.35,
+              }}
+              className="mt-5"
+            >
+              <div className="flex items-center gap-3 mb-3">
 
                 <FiTool
                   className="text-[#8B5CF6]"
-                  size={18}
+                  size={17}
                 />
 
                 <h3
                   className="
-                    text-sm
+                    text-xs
                     uppercase
                     tracking-[0.2em]
                     text-[#C4B5FD]
@@ -272,102 +465,178 @@ const About = () => {
 
               </div>
 
-              <div className="flex flex-wrap gap-2.5">
-
-                {[
-                  "Figma",
-                  "Git",
-                  "GitHub",
-                  "Vercel",
-                  "Netlify",
-                ].map((tool) => (
-                  <span
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{
+                  once: true,
+                  amount: 0.3,
+                }}
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.08,
+                    },
+                  },
+                }}
+                className="flex flex-wrap gap-2"
+              >
+                {tools.map((tool) => (
+                  <motion.span
                     key={tool}
+                    variants={chipAnimation}
+                    whileHover={{
+                      y: -4,
+                      scale: 1.05,
+                    }}
                     className="
-                      px-4
-                      py-2
+                      px-3
+                      py-1.5
                       rounded-full
                       border
                       border-[#302340]
-                      text-sm
+                      text-xs
                       text-[#91899F]
                       hover:text-[#C4B5FD]
                       hover:border-[#8B5CF6]
-                      transition-all
+                      transition-colors
                       duration-300
                     "
                   >
                     {tool}
-                  </span>
+                  </motion.span>
                 ))}
-
-              </div>
-
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Explore Button */}
-            <div className="flex mt-9">
-
-              <a
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.5,
+              }}
+              className="flex mt-6"
+            >
+              <motion.a
                 href="#projects"
+                whileHover={{
+                  y: -4,
+                  scale: 1.03,
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
                 className="
                   group
                   flex
                   items-center
                   gap-2
-                  px-6
-                  py-3
+                  px-5
+                  py-2.5
                   rounded-full
                   bg-[#8B5CF6]
                   text-white
+                  text-sm
                   font-medium
                   hover:bg-[#A78BFA]
                   hover:text-[#080610]
-                  hover:-translate-y-1
-                  transition-all
+                  transition-colors
                   duration-300
                 "
               >
                 Explore My Work
 
                 <FiArrowUpRight
-                  size={17}
+                  size={16}
                   className="
                     group-hover:rotate-45
                     transition-transform
                     duration-300
                   "
                 />
-              </a>
+              </motion.a>
+            </motion.div>
 
-            </div>
-
-          </div>
+          </motion.div>
 
           {/* RIGHT SIDE - IMAGE */}
-          <div className="relative flex justify-center">
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 70,
+              scale: 0.9,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 1,
+              ease: "easeOut",
+            }}
+            className="relative flex justify-center"
+          >
 
             {/* Outer Glow */}
-            <div
+            <motion.div
+              animate={{
+                scale: [1, 1.08, 1],
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
               className="
                 absolute
-                w-[320px]
-                h-[320px]
+                w-[280px]
+                h-[280px]
                 rounded-full
                 bg-[#8B5CF6]/10
-                blur-[90px]
+                blur-[80px]
               "
             />
 
             {/* Image Card */}
-            <div
+            <motion.div
+              animate={{
+                y: [0, -8, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              whileHover={{
+                scale: 1.02,
+                rotateY: 2,
+                rotateX: -2,
+              }}
               className="
                 relative
-                w-[300px]
-                md:w-[350px]
-                h-[390px]
-                md:h-[450px]
-                rounded-[2rem]
+                w-[270px]
+                md:w-[310px]
+                h-[350px]
+                md:h-[400px]
+                rounded-[1.7rem]
                 border
                 border-[#3A2850]
                 bg-[#0D0A15]
@@ -381,7 +650,7 @@ const About = () => {
                 className="
                   absolute
                   inset-3
-                  rounded-[1.5rem]
+                  rounded-[1.3rem]
                   border
                   border-[#302340]
                   overflow-hidden
@@ -395,15 +664,15 @@ const About = () => {
                 />
               </div>
 
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
         </div>
-
       </div>
     </section>
   );
 };
 
 export default About;
+
