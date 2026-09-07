@@ -3,15 +3,20 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Tools from "./components/Tools";
+import WorkExperience from "./components/WorkExperience";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Tools />
+
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <Tools />
+        <WorkExperience />
+      </main>
     </>
   );
 }

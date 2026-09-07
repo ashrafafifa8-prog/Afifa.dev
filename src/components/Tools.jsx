@@ -67,6 +67,9 @@ const tools = [
   },
 ];
 
+
+// ================= TOOL ITEM =================
+
 const ToolItem = ({ tool, active, onPress, onRelease }) => {
   const Icon = tool.icon;
 
@@ -77,10 +80,10 @@ const ToolItem = ({ tool, active, onPress, onRelease }) => {
       onPointerLeave={onRelease}
       whileHover={{
         scale: 1.06,
-        y: -5,
+        y: -4,
       }}
       whileTap={{
-        scale: 1.13,
+        scale: 1.12,
       }}
       transition={{
         type: "spring",
@@ -106,9 +109,9 @@ const ToolItem = ({ tool, active, onPress, onRelease }) => {
           active
             ? `
               border-[#8B5CF6]
-              bg-[#8B5CF6]/10
+              bg-[#8B5CF6]/15
               opacity-100
-              shadow-[0_0_35px_rgba(139,92,246,0.25)]
+              shadow-[0_0_35px_rgba(139,92,246,0.35)]
             `
             : `
               border-[#302340]/60
@@ -117,15 +120,17 @@ const ToolItem = ({ tool, active, onPress, onRelease }) => {
             `
         }
 
-        hover:border-[#8B5CF6]/60
+        hover:border-[#8B5CF6]/70
         hover:bg-[#130D1D]
         hover:opacity-100
       `}
     >
+
       {/* Icon */}
+
       <motion.div
         animate={{
-          scale: active ? 1.18 : 1,
+          scale: active ? 1.2 : 1,
           rotate: active ? 5 : 0,
         }}
         transition={{
@@ -144,7 +149,7 @@ const ToolItem = ({ tool, active, onPress, onRelease }) => {
               active
                 ? `
                   text-[#5EEAD4]
-                  drop-shadow-[0_0_12px_rgba(94,234,212,0.55)]
+                  drop-shadow-[0_0_14px_rgba(94,234,212,0.65)]
                 `
                 : `
                   text-[#A78BFA]
@@ -154,7 +159,9 @@ const ToolItem = ({ tool, active, onPress, onRelease }) => {
         />
       </motion.div>
 
+
       {/* Tool Name */}
+
       <span
         className={`
           whitespace-nowrap
@@ -172,15 +179,20 @@ const ToolItem = ({ tool, active, onPress, onRelease }) => {
       >
         {tool.name}
       </span>
+
     </motion.div>
   );
 };
+
+
+// ================= TOOLS SECTION =================
 
 const Tools = () => {
   const [active, setActive] = useState(null);
 
   const firstRow = tools.slice(0, 6);
   const secondRow = tools.slice(6);
+
 
   return (
     <section
@@ -189,15 +201,18 @@ const Tools = () => {
         relative
         overflow-hidden
         bg-[#080610]
-        py-24
+        pt-28
+        pb-24
         text-[#F8F5FF]
       "
     >
+
       {/* ================= BACKGROUND GLOW ================= */}
 
       <div className="pointer-events-none absolute inset-0">
 
         {/* Purple Glow */}
+
         <motion.div
           animate={{
             x: [0, 40, 0],
@@ -221,7 +236,9 @@ const Tools = () => {
           "
         />
 
+
         {/* Teal Glow */}
+
         <motion.div
           animate={{
             x: [0, -35, 0],
@@ -244,7 +261,9 @@ const Tools = () => {
             blur-[130px]
           "
         />
+
       </div>
+
 
       {/* ================= HEADING ================= */}
 
@@ -259,7 +278,9 @@ const Tools = () => {
           text-center
         "
       >
+
         {/* Small Heading */}
+
         <motion.div
           initial={{
             opacity: 0,
@@ -284,6 +305,7 @@ const Tools = () => {
             gap-4
           "
         >
+
           <span className="h-px w-10 bg-[#8B5CF6]" />
 
           <span
@@ -298,9 +320,12 @@ const Tools = () => {
           </span>
 
           <span className="h-px w-10 bg-[#8B5CF6]" />
+
         </motion.div>
 
+
         {/* Main Heading */}
+
         <motion.h2
           initial={{
             opacity: 0,
@@ -326,6 +351,7 @@ const Tools = () => {
           "
         >
           Tools I{" "}
+
           <span
             className="
               bg-gradient-to-r
@@ -340,7 +366,9 @@ const Tools = () => {
           </span>
         </motion.h2>
 
+
         {/* Description */}
+
         <motion.p
           initial={{
             opacity: 0,
@@ -371,7 +399,9 @@ const Tools = () => {
           Technologies and creative tools I use to turn ideas
           into polished digital experiences.
         </motion.p>
+
       </div>
+
 
       {/* ================= MOVING TOOLS ================= */}
 
@@ -381,10 +411,13 @@ const Tools = () => {
           z-10
           space-y-5
           overflow-hidden
+          pt-6
+          pb-8
         "
       >
 
-        {/* Left Fade */}
+        {/* LEFT FADE */}
+
         <div
           className="
             pointer-events-none
@@ -399,7 +432,9 @@ const Tools = () => {
           "
         />
 
-        {/* Right Fade */}
+
+        {/* RIGHT FADE */}
+
         <div
           className="
             pointer-events-none
@@ -413,6 +448,7 @@ const Tools = () => {
             to-transparent
           "
         />
+
 
         {/* ================= FIRST ROW ================= */}
 
@@ -444,6 +480,7 @@ const Tools = () => {
           )}
         </motion.div>
 
+
         {/* ================= SECOND ROW ================= */}
 
         <motion.div
@@ -473,7 +510,39 @@ const Tools = () => {
             )
           )}
         </motion.div>
+
       </div>
+
+
+      {/* ================= BOTTOM TEXT ================= */}
+
+      <motion.p
+        initial={{
+          opacity: 0,
+        }}
+        whileInView={{
+          opacity: 1,
+        }}
+        viewport={{
+          once: true,
+        }}
+        transition={{
+          duration: 0.8,
+          delay: 0.3,
+        }}
+        className="
+          relative
+          z-10
+          mt-5
+          text-center
+          text-xs
+          tracking-wide
+          text-[#5F586B]
+        "
+      >
+        Press and hold any tool to explore my stack
+      </motion.p>
+
     </section>
   );
 };
