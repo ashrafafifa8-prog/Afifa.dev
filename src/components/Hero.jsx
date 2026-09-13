@@ -1,4 +1,3 @@
-
 import React from "react";
 import CursorGrid from "./CursorGrid";
 import { motion } from "framer-motion";
@@ -45,7 +44,8 @@ const Hero = () => {
             font-black
             uppercase
             tracking-[-0.08em]
-            text-[#A78BFA]/[0.035]
+            text-transparent
+            [-webkit-text-stroke:1px_rgba(139,92,246,0.15)]
           "
         >
           AFIFA ASHRAF
@@ -226,4 +226,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
