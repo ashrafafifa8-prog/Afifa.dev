@@ -1,5 +1,6 @@
 
 import React from "react";
+import CursorGrid from "./CursorGrid";
 import { motion } from "framer-motion";
 
 import {
@@ -13,473 +14,213 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="
-        relative
-        min-h-screen
-        overflow-hidden
-        bg-[#080610]
-        text-[#F8F5FF]
-      "
+      className="relative min-h-screen w-full overflow-hidden bg-[#080610]"
     >
-      {/* Background Glow */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="
-            absolute
-            w-[500px]
-            h-[500px]
-            rounded-full
-            bg-[#6D28D9]/20
-            blur-[140px]
-            -top-20
-            -left-20
-            animate-pulse
-          "
-        />
-
-        <div
-          className="
-            absolute
-            w-[550px]
-            h-[550px]
-            rounded-full
-            bg-[#8B5CF6]/20
-            blur-[160px]
-            top-[25%]
-            -right-40
-            animate-[float_8s_ease-in-out_infinite]
-          "
-        />
-
-        <div
-          className="
-            absolute
-            w-[450px]
-            h-[300px]
-            rounded-full
-            bg-[#4C1D95]/25
-            blur-[130px]
-            bottom-0
-            left-[20%]
-          "
+      {/* ================= CURSOR GRID ================= */}
+      <div className="pointer-events-none absolute inset-0 z-0 h-full w-full">
+        <CursorGrid
+          cellSize={65}
+          color="#7C3AED"
+          radius={190}
+          falloff="smooth"
+          holdTime={350}
+          fadeDuration={1000}
+          lineWidth={1.4}
+          maxOpacity={1}
+          fillOpacity={0.08}
+          gridOpacity={0.025}
+          cellRadius={6}
+          clickPulse={true}
+          pulseSpeed={700}
+          className="absolute inset-0 h-full w-full"
         />
       </div>
 
-      {/* Subtle Background Name */}
-      <div
-        className="
-          absolute
-          top-[17%]
-          left-1/2
-          -translate-x-1/2
-          whitespace-nowrap
-          text-[12vw]
-          font-black
-          tracking-tight
-          text-transparent
-          [-webkit-text-stroke:1px_rgba(139,92,246,0.15)]
-          pointer-events-none
-          select-none
-        "
-      >
-        AFIFA ASHRAF
+      {/* ================= BACKGROUND NAME ================= */}
+      <div className="pointer-events-none absolute inset-0 z-[1] flex items-center justify-center overflow-hidden">
+        <span
+          className="
+            whitespace-nowrap
+            text-[clamp(5rem,16vw,15rem)]
+            font-black
+            uppercase
+            tracking-[-0.08em]
+            text-[#A78BFA]/[0.035]
+          "
+        >
+          AFIFA ASHRAF
+        </span>
       </div>
 
-      {/* Hero Content */}
-      <div
-        className="
-          relative
-          z-10
-          min-h-screen
-          max-w-7xl
-          mx-auto
-          px-6
-          flex
-          items-center
-          justify-center
-          text-center
-          pt-24
-        "
-      >
-        <div className="max-w-5xl">
+      {/* ================= DARK OVERLAY ================= */}
+      <div className="pointer-events-none absolute inset-0 z-[2] bg-[#080610]/15" />
 
-          {/* Intro */}
+      {/* ================= CENTER PURPLE GLOW ================= */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 z-[2] h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6D28D9]/10 blur-[170px]" />
+
+      {/* ================= CORNER GLOWS ================= */}
+      <div className="pointer-events-none absolute -bottom-24 -left-24 z-[2] h-[350px] w-[350px] rounded-full bg-[#5B21B6]/8 blur-[150px]" />
+
+      <div className="pointer-events-none absolute -right-24 -top-24 z-[2] h-[350px] w-[350px] rounded-full bg-[#7C3AED]/8 blur-[150px]" />
+
+      {/* ================= MAIN CONTENT ================= */}
+      <div className="relative z-20 flex min-h-screen w-full items-center justify-center px-5 py-24 md:px-10 lg:px-16">
+        <div className="w-full max-w-5xl text-center">
+
+          {/* HELLO */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.6,
+              duration: 0.7,
+              ease: "easeOut",
+            }}
+            className="mb-5"
+          >
+            <span className="text-sm font-medium uppercase tracking-[0.35em] text-[#A78BFA]">
+              Hello, I'm
+            </span>
+          </motion.div>
+
+          {/* NAME */}
+          <motion.h1
+            initial={{ opacity: 0, y: 35 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
               delay: 0.1,
               ease: "easeOut",
             }}
-            className="flex items-center justify-center gap-4 mb-7"
+            className="whitespace-nowrap text-[clamp(2.5rem,8vw,7rem)] font-black leading-none tracking-[-0.06em] text-[#F8F5FF]"
           >
-            <span className="w-12 h-px bg-[#8B5CF6]" />
-
-            <p className="text-sm md:text-base tracking-[0.4em] uppercase text-[#C4B5FD]">
-              Hello, I'm
-            </p>
-
-            <span className="w-12 h-px bg-[#8B5CF6]" />
-          </motion.div>
-
-          {/* Main Name */}
-          <motion.h1
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.12,
-                  delayChildren: 0.3,
-                },
-              },
-            }}
-            className="
-              text-[clamp(3rem,8vw,7.5rem)]
-              leading-none
-              font-black
-              tracking-[-0.04em]
-              whitespace-nowrap
-            "
-          >
-            {/* AFIFA */}
-            <motion.span
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: 60,
-                  filter: "blur(12px)",
-                },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                  transition: {
-                    duration: 0.8,
-                    ease: "easeOut",
-                  },
-                },
-              }}
-              className="text-[#F8F5FF]"
-            >
-              AFIFA
-            </motion.span>
-
-            {/* ASHRAF */}
-            <motion.span
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: 60,
-                  filter: "blur(12px)",
-                },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                  transition: {
-                    duration: 0.8,
-                    ease: "easeOut",
-                  },
-                },
-              }}
-              className="
-                text-transparent
-                bg-clip-text
-                bg-gradient-to-r
-                from-[#C4B5FD]
-                via-[#8B5CF6]
-                to-[#A78BFA]
-              "
-            >
-              {" "}ASHRAF
-            </motion.span>
+            AFIFA{" "}
+            <span className="bg-gradient-to-r from-[#7C3AED] via-[#A78BFA] to-[#C4B5FD] bg-clip-text text-transparent">
+              ASHRAF
+            </span>
           </motion.h1>
 
-          {/* Role */}
+          {/* ROLE */}
           <motion.h2
-            initial={{
-              opacity: 0,
-              y: 30,
-              filter: "blur(8px)",
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)",
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 1,
-              ease: "easeOut",
-            }}
-            className="
-              mt-7
-              text-2xl
-              md:text-4xl
-              font-semibold
-              text-[#F8F5FF]
-            "
-          >
-            Digital Experience Designer
-
-            <motion.span
-              animate={{
-                opacity: [0.4, 1, 0.4],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="text-[#5EEAD4]"
-            >
-              .
-            </motion.span>
-          </motion.h2>
-
-          {/* Description */}
-          <motion.p
-            initial={{
-              opacity: 0,
-              y: 30,
-              filter: "blur(8px)",
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)",
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 1.3,
-              ease: "easeOut",
-            }}
-            className="
-              mt-6
-              mx-auto
-              max-w-2xl
-              text-base
-              md:text-lg
-              leading-8
-              text-[#A8A1B2]
-            "
-          >
-            I don't just build websites — I craft digital experiences
-            that make people stop, explore, and remember.
-          </motion.p>
-
-          {/* Buttons */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.7,
-              delay: 1.5,
+              delay: 0.25,
               ease: "easeOut",
             }}
-            className="
-              flex
-              flex-wrap
-              justify-center
-              items-center
-              gap-4
-              mt-9
-            "
+            className="mt-6 text-xl font-medium text-[#C4B5FD] md:text-2xl"
           >
-            {/* View Work */}
+            Digital Experience Designer
+          </motion.h2>
+
+          {/* DESCRIPTION */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.35,
+              ease: "easeOut",
+            }}
+            className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-[#A8A1B2] md:text-base"
+          >
+            I don't just build websites — I craft digital experiences that
+            make people stop, explore, and remember.
+          </motion.p>
+
+          {/* ================= BUTTONS ================= */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.45,
+              ease: "easeOut",
+            }}
+            className="mt-9 flex flex-wrap items-center justify-center gap-4"
+          >
+            {/* VIEW WORK */}
             <a
               href="#projects"
-              className="
-                group
-                flex
-                items-center
-                gap-2
-                px-7
-                py-3.5
-                rounded-full
-                bg-[#8B5CF6]
-                text-white
-                font-medium
-                shadow-[0_0_30px_rgba(139,92,246,0.25)]
-                hover:bg-[#A78BFA]
-                hover:text-[#080610]
-                hover:-translate-y-1
-                hover:shadow-[0_0_40px_rgba(139,92,246,0.45)]
-                transition-all
-                duration-300
-              "
+              className="group flex items-center gap-2 rounded-full bg-[#7C3AED] px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#6D28D9] hover:shadow-[0_0_35px_rgba(124,58,237,0.4)]"
             >
               View My Work
 
-              <FiArrowUpRight
-                size={18}
-                className="
-                  group-hover:rotate-45
-                  transition-transform
-                  duration-300
-                "
-              />
+              <FiArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
             </a>
 
-            {/* Let's Talk */}
+            {/* LET'S TALK */}
             <a
               href="#contact"
-              className="
-                flex
-                items-center
-                gap-2
-                px-7
-                py-3.5
-                rounded-full
-                border
-                border-[#4C3470]
-                text-[#C4B5FD]
-                hover:bg-[#24143A]
-                hover:border-[#8B5CF6]
-                hover:-translate-y-1
-                transition-all
-                duration-300
-              "
+              className="group flex items-center gap-2 rounded-full border border-[#8B5CF6]/40 bg-[#100C18]/50 px-7 py-3.5 text-sm font-semibold text-[#F8F5FF] backdrop-blur-md transition-all duration-300 hover:border-[#A78BFA] hover:bg-[#8B5CF6]/10 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)]"
             >
               Let's Talk
+
+              <FiArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
             </a>
           </motion.div>
 
-          {/* Social Icons */}
+          {/* ================= SOCIAL ICONS ================= */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.7,
-              delay: 1.7,
+              delay: 0.55,
               ease: "easeOut",
             }}
-            className="
-              flex
-              justify-center
-              items-center
-              gap-4
-              mt-11
-            "
+            className="mt-9 flex items-center justify-center gap-4"
           >
-            {/* GitHub */}
+            {/* GITHUB */}
             <a
-              href="https://github.com/ashrafafifa8-prog"
+              href="https://github.com"
               target="_blank"
-              rel="noopener noreferrer"
-              className="
-                w-11
-                h-11
-                rounded-full
-                border
-                border-[#302340]
-                flex
-                items-center
-                justify-center
-                text-[#A8A1B2]
-                hover:text-[#C4B5FD]
-                hover:border-[#8B5CF6]
-                hover:bg-[#24143A]
-                hover:-translate-y-1
-                transition-all
-                duration-300
-              "
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#8B5CF6]/30 bg-[#100C18]/80 text-[#8F849F] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#A78BFA] hover:bg-[#8B5CF6]/10 hover:text-[#C4B5FD] hover:shadow-[0_0_22px_rgba(139,92,246,0.25)]"
             >
-              <FiGithub size={19} />
+              <FiGithub size={18} />
             </a>
 
-            {/* LinkedIn */}
+            {/* LINKEDIN */}
             <a
-              href="https://www.linkedin.com/in/afifa-ashraf03/"
+              href="https://linkedin.com"
               target="_blank"
-              rel="noopener noreferrer"
-              className="
-                w-11
-                h-11
-                rounded-full
-                border
-                border-[#302340]
-                flex
-                items-center
-                justify-center
-                text-[#A8A1B2]
-                hover:text-[#C4B5FD]
-                hover:border-[#8B5CF6]
-                hover:bg-[#24143A]
-                hover:-translate-y-1
-                transition-all
-                duration-300
-              "
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#8B5CF6]/30 bg-[#100C18]/80 text-[#8F849F] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#A78BFA] hover:bg-[#8B5CF6]/10 hover:text-[#C4B5FD] hover:shadow-[0_0_22px_rgba(139,92,246,0.25)]"
             >
-              <FiLinkedin size={19} />
+              <FiLinkedin size={18} />
             </a>
 
-            {/* Email */}
+            {/* EMAIL */}
             <a
               href="mailto:ashrafafifa8@gmail.com"
-              className="
-                w-11
-                h-11
-                rounded-full
-                border
-                border-[#302340]
-                flex
-                items-center
-                justify-center
-                text-[#A8A1B2]
-                hover:text-[#C4B5FD]
-                hover:border-[#8B5CF6]
-                hover:bg-[#24143A]
-                hover:-translate-y-1
-                transition-all
-                duration-300
-              "
+              aria-label="Email"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#8B5CF6]/30 bg-[#100C18]/80 text-[#8F849F] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#A78BFA] hover:bg-[#8B5CF6]/10 hover:text-[#C4B5FD] hover:shadow-[0_0_22px_rgba(139,92,246,0.25)]"
             >
-              <FiMail size={19} />
+              <FiMail size={18} />
             </a>
           </motion.div>
-
-          {/* Scroll */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 15,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 1.9,
-              ease: "easeOut",
-            }}
-            className="mt-10 flex flex-col items-center"
-          >
-            <span className="text-[10px] tracking-[0.45em] uppercase text-[#7C708D]">
-              Scroll
-            </span>
-
-            <div className="mt-3 w-px h-9 bg-gradient-to-b from-[#8B5CF6] to-transparent animate-pulse" />
-          </motion.div>
-
         </div>
       </div>
+
+      {/* ================= SCROLL ================= */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1,
+          delay: 1,
+        }}
+        className="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-3"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em] text-[#7C708D]">
+          Scroll
+        </span>
+
+        <div className="h-10 w-px bg-gradient-to-b from-[#7C3AED] to-transparent" />
+      </motion.div>
     </section>
   );
 };
