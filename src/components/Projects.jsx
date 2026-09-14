@@ -38,9 +38,9 @@ const projects = [
 
     tech: ["React", "Tailwind CSS", "React Router"],
 
-    image: "",
+    image: "\food.jpeg.png",
 
-    link: "https://your-foodie-project.vercel.app",
+    link: "https://vercel.com/afifa3/food-website",
   },
 
   {
