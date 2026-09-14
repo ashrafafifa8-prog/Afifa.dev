@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -6,53 +7,37 @@ import AccordionGallery from "./AccordionGallery";
 const projects = [
   {
     title: "Real Estate Website",
-
     description:
       "A modern and responsive real estate website designed with a clean interface, elegant visuals and smooth user experience.",
-
     tech: ["React", "Tailwind CSS", "JavaScript"],
-
     image: "",
-
     link: "https://your-real-estate-project.vercel.app",
   },
 
   {
     title: "SmartBuy",
-
     description:
       "A modern e-commerce platform with product browsing, responsive layouts and smooth shopping interactions built with React.",
-
     tech: ["React", "Tailwind CSS", "React Router"],
-
     image: "",
-
     link: "https://your-smartbuy-project.vercel.app",
   },
 
   {
     title: "Foodie",
-
     description:
       "A modern food website featuring recipes, products and an engaging responsive interface with smooth navigation.",
-
     tech: ["React", "Tailwind CSS", "React Router"],
-
-    image: "\food.jpeg.png",
-
-    link: "https://vercel.com/afifa3/food-website",
+    image: "/food.jpeg.png",
+    link: "https://food-website-seven-weld.vercel.app/",
   },
 
   {
     title: "Portfolio Website",
-
     description:
       "A personal portfolio designed to showcase creative development work, technical skills and modern digital experiences.",
-
     tech: ["React", "Tailwind CSS", "Framer Motion"],
-
     image: "",
-
     link: "#",
   },
 ];
@@ -61,13 +46,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="
-        relative
-        overflow-hidden
-        bg-[#080610]
-        py-28
-        text-[#F8F5FF]
-      "
+      className="relative overflow-hidden bg-[#080610] py-28 text-[#F8F5FF]"
     >
       {/* Background Glow */}
       <div className="pointer-events-none absolute inset-0">
@@ -159,7 +138,7 @@ const Projects = () => {
               md:text-6xl
             "
           >
-            Projects That{" "}
+            Projects{" "}
             <span
               className="
                 bg-gradient-to-r
@@ -170,7 +149,7 @@ const Projects = () => {
                 text-transparent
               "
             >
-              Speak
+              That Speak
             </span>
           </h2>
 
@@ -278,3 +257,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

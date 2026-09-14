@@ -1,5 +1,7 @@
+
 import { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "gsap";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const AccordionGallery = ({
   items = [],
@@ -34,6 +36,9 @@ const AccordionGallery = ({
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // ---------------------------------------
+  // Layout Animation
+  // ---------------------------------------
   const applyLayout = useCallback(
     (animate = true) => {
       const panels = panelRefs.current;
@@ -64,7 +69,9 @@ const AccordionGallery = ({
         const animationDuration =
           animate && !prefersReduced ? duration : 0;
 
-        // Panel animation
+        // ---------------------------------------
+        // Panel Animation
+        // ---------------------------------------
         tl.to(
           panel,
           {
@@ -76,7 +83,9 @@ const AccordionGallery = ({
           0
         );
 
-        // Image animation
+        // ---------------------------------------
+        // Image Animation
+        // ---------------------------------------
         if (media) {
           const drift = active - i;
 
@@ -85,11 +94,17 @@ const AccordionGallery = ({
             {
               xPercent: -50,
               yPercent: -50,
-              x: isActive ? 0 : drift * parallax * 15,
-              scale: isActive ? 1.04 : 1,
+
+              // Keep image centered with only very small movement
+              x: isActive ? 0 : drift * parallax * 8,
+
+              // Reduced zoom
+              scale: isActive ? 1 : 1,
+
               filter: grayscale
                 ? `grayscale(${isActive ? 0 : 1})`
                 : "grayscale(0)",
+
               duration: animationDuration,
               ease,
             },
@@ -97,7 +112,9 @@ const AccordionGallery = ({
           );
         }
 
-        // Overlay animation
+        // ---------------------------------------
+        // Overlay Animation
+        // ---------------------------------------
         if (overlay) {
           tl.to(
             overlay,
@@ -110,7 +127,9 @@ const AccordionGallery = ({
           );
         }
 
-        // Content animation
+        // ---------------------------------------
+        // Content Animation
+        // ---------------------------------------
         if (content) {
           if (isActive) {
             tl.to(
@@ -153,6 +172,9 @@ const AccordionGallery = ({
     ]
   );
 
+  // ---------------------------------------
+  // Effects
+  // ---------------------------------------
   useEffect(() => {
     applyLayout(false);
 
@@ -208,6 +230,7 @@ const AccordionGallery = ({
               max-[768px]:!flex-[1_1_0]
               max-[768px]:min-h-[140px]
               max-[768px]:!rotate-0
+
               ${
                 isActive
                   ? "shadow-[0_25px_80px_rgba(139,92,246,0.2)]"
@@ -216,6 +239,7 @@ const AccordionGallery = ({
             `}
             style={{
               borderRadius: `${radius}px`,
+              minHeight: `${height}px`,
               willChange: "flex-grow, transform",
             }}
             onMouseEnter={() => setActive(index)}
@@ -233,8 +257,11 @@ const AccordionGallery = ({
               }
             }}
           >
-            {/* Image */}
-            <div className="absolute inset-0 overflow-hidden">
+            {/* =================================
+                IMAGE
+            ================================= */}
+
+            <div className="absolute inset-0 overflow-hidden bg-[#0D0915]">
               <div
                 ref={(el) => (mediaRefs.current[index] = el)}
                 className="
@@ -242,10 +269,11 @@ const AccordionGallery = ({
                   left-1/2
                   top-1/2
                   h-full
-                  w-[115%]
+                  w-full
                 "
                 style={{
                   transform: "translate(-50%, -50%)",
+                  transformOrigin: "center center",
                 }}
               >
                 {item.image ? (
@@ -253,11 +281,41 @@ const AccordionGallery = ({
                     src={item.image}
                     alt={item.title}
                     draggable="false"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+
+                      e.currentTarget.parentElement.innerHTML = `
+                        <div style="
+                          width:100%;
+                          height:100%;
+                          display:flex;
+                          align-items:center;
+                          justify-content:center;
+                          background:linear-gradient(
+                            135deg,
+                            #171025,
+                            #0D0915,
+                            #09070D
+                          );
+                        ">
+                          <span style="
+                            color:#6F657A;
+                            font-size:10px;
+                            letter-spacing:0.25em;
+                            text-transform:uppercase;
+                          ">
+                            Project Preview
+                          </span>
+                        </div>
+                      `;
+                    }}
                     className="
+                      block
                       h-full
                       w-full
                       select-none
-                      object-cover
+                      object-contain
+                      object-center
                     "
                   />
                 ) : (
@@ -326,7 +384,10 @@ const AccordionGallery = ({
               />
             </div>
 
-            {/* Number */}
+            {/* =================================
+                NUMBER
+            ================================= */}
+
             <div className="absolute right-5 top-5 z-20">
               <span
                 className="
@@ -349,7 +410,10 @@ const AccordionGallery = ({
               </span>
             </div>
 
-            {/* Content */}
+            {/* =================================
+                CONTENT
+            ================================= */}
+
             <div
               ref={(el) => (contentRefs.current[index] = el)}
               className="
@@ -378,7 +442,15 @@ const AccordionGallery = ({
                   }}
                 />
 
-                <span className="text-[10px] uppercase tracking-[0.3em] text-[#C4B5FD]">
+                <span
+                  className="
+                  
+                    text-[10px]
+                    uppercase
+                    tracking-[0.3em]
+                    text-[#C4B5FD]
+                  "
+                >
                   Featured Project
                 </span>
               </div>
@@ -433,39 +505,71 @@ const AccordionGallery = ({
                 ))}
               </div>
 
-              {/* View Project */}
-              <div className="mt-5 flex items-center gap-3">
-                <span
+              {/* View Project Link */}
+              {item.link && item.link !== "#" ? (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
                   className="
-                    text-[10px]
-                    uppercase
-                    tracking-[0.25em]
-                    text-[#A8A1B2]
-                  "
-                >
-                  View Project
-                </span>
-
-                <span
-                  className="
-                    flex
-                    h-8
-                    w-8
+                    mt-5
+                    inline-flex
                     items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-[#8B5CF6]/50
-                    bg-[#8B5CF6]/15
-                    text-[#C4B5FD]
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
+                    gap-3
+                    group/link
                   "
                 >
-                  ↗
-                </span>
-              </div>
+                  <span
+                    className="
+                      text-[10px]
+                      uppercase
+                      tracking-[0.25em]
+                      text-[#A8A1B2]
+                      transition-colors
+                      duration-300
+                      group-hover/link:text-[#C4B5FD]
+                    "
+                  >
+                    View Project
+                  </span>
+
+                  <span
+                    className="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-[#8B5CF6]/50
+                      bg-[#8B5CF6]/15
+                      text-[#C4B5FD]
+                      transition-all
+                      duration-300
+                      group-hover/link:translate-x-1
+                      group-hover/link:border-[#8B5CF6]
+                      group-hover/link:bg-[#8B5CF6]/25
+                    "
+                  >
+                    <FiArrowUpRight size={15} />
+                  </span>
+                </a>
+              ) : (
+                <div className="mt-5 inline-flex items-center gap-3">
+                  <span
+                    className="
+                      text-[10px]
+                      uppercase
+                      tracking-[0.25em]
+                      text-[#6F657A]
+                    "
+                  >
+                    Coming Soon
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Active Border */}
@@ -493,3 +597,4 @@ const AccordionGallery = ({
 };
 
 export default AccordionGallery;
+
